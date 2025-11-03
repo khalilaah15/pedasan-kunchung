@@ -1,5 +1,3 @@
-Berdasarkan struktur file yang Anda tunjukkan, ini memang masih setup default Laravel 11. Berikut README.md yang sesuai dengan kondisi current project Anda:
-
 # 🌶️ Pedasan Kunchung
 
 Website resmi **Pedasan Kunchung** - destinasi utama bagi pecinta kuliner pedas di Indonesia. 
