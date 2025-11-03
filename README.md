@@ -1,66 +1,219 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Berdasarkan struktur file yang Anda tunjukkan, ini memang masih setup default Laravel 11. Berikut README.md yang sesuai dengan kondisi current project Anda:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# 🌶️ Pedasan Kunchung
 
-## About Laravel
+Website resmi **Pedasan Kunchung** - destinasi utama bagi pecinta kuliner pedas di Indonesia. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+![Pedasan Kunchung](https://via.placeholder.com/1200x400/DC2626/FFFFFF?text=Pedasan+Kunchung+-+Development+Phase)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Status Project
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+🛠 **Early Development Phase** - Project baru dimulai dengan setup dasar Laravel 11.
 
-## Learning Laravel
+## 📋 Current State
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🏗️ Struktur Saat Ini (Default Laravel 11)
+```
+resources/
+├── css/
+│   ├── app.css      # Stylesheet utama
+│   └── main.css     # Stylesheet tambahan
+├── js/
+│   ├── app.js       # JavaScript utama
+│   ├── bootstrap.js # Bootstrap JavaScript
+│   └── main.js      # JavaScript tambahan
+└── views/
+    ├── layouts/
+    │   └── app.blade.php    # Layout utama
+    ├── home.blade.php       # Halaman home
+    └── welcome.blade.php    # Halaman welcome default
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 🌐 Routes yang Tersedia
+- `GET /` - Welcome page (default Laravel)
+- `GET /home` - Home page
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Tech Stack
 
-## Laravel Sponsors
+### Current Setup
+- **Laravel 11** - PHP framework
+- **Vite** - Asset bundler
+- **Blade** - Templating engine
+- **Bootstrap** - CSS framework (default)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Planning Phase
+- Database MySQL (akan diintegrasikan)
+- Authentication system
+- Product management
+- E-commerce features
 
-### Premium Partners
+## 🚀 Instalasi dan Development
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Prasyarat
+- PHP 8.2+
+- Composer
+- Node.js 16+
 
-## Contributing
+### Langkah Instalasi
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. **Clone Repository**
+   ```bash
+   git clone https://github.com/khalilaah15/pedasan-kunchung.git
+   cd pedasan-kunchung
+   ```
 
-## Code of Conduct
+2. **Install Dependencies**
+   ```bash
+   composer install
+   npm install
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. **Setup Environment**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Security Vulnerabilities
+4. **Jalankan Development Server**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+   **Terminal 1** (Laravel):
+   ```bash
+   php artisan serve
+   ```
 
-## License
+   **Terminal 2** (Vite):
+   ```bash
+   npm run dev
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. **Akses Website**
+   Buka http://localhost:8000
+
+### Production Build
+```bash
+npm run build
+```
+
+## 🎯 Roadmap Development
+
+### Phase 1: Setup Foundation ✅
+- [x] Install Laravel 11
+- [x] Configure Vite
+- [x] Basic file structure
+
+### Phase 2: Design System 🚧
+- [ ] Custom color scheme (merah pedas)
+- [ ] Brand typography
+- [ ] Component library
+- [ ] Responsive layout
+
+### Phase 3: Content & Pages
+- [ ] Homepage redesign
+- [ ] About page
+- [ ] Products page
+- [ ] Contact page
+
+### Phase 4: Functionality
+- [ ] Database integration
+- [ ] Product management
+- [ ] Shopping cart
+- [ ] User authentication
+
+## 🔧 Development Workflow
+
+### Mengembangkan Views
+Edit file di `resources/views/`:
+- `layouts/app.blade.php` - Layout utama
+- `home.blade.php` - Halaman home
+- `welcome.blade.php` - Halaman welcome
+
+### Styling dengan Vite
+- Edit `resources/css/app.css` untuk styles utama
+- Gunakan `npm run dev` untuk real-time changes
+- Import CSS/JS di `resources/js/app.js`
+
+### Menambah Routes
+Edit `routes/web.php`:
+```php
+Route::get('/about', function () {
+    return view('about');
+});
+```
+
+## 🎨 Customization Plan
+
+### Brand Colors (Proposed)
+```css
+:root {
+    --primary-red: #DC2626;    /* Merah pedas */
+    --secondary-orange: #EA580C; /* Oranye */
+    --accent-yellow: #F59E0B;   /* Kuning */
+    --dark-red: #991B1B;        /* Merah tua */
+}
+```
+
+### Typography Plan
+- **Headings**: 'Poppins', sans-serif
+- **Body**: 'Inter', sans-serif
+
+## 📝 Catatan untuk Developer
+
+### File yang Perlu Diubah Pertama:
+1. `resources/views/layouts/app.blade.php` - Layout utama
+2. `resources/views/welcome.blade.php` - Homepage
+3. `resources/css/app.css` - Styling custom
+4. `routes/web.php` - Routing aplikasi
+
+### Langkah Selanjutnya yang Disarankan:
+1. Setup database connection di `.env`
+2. Buat Model Product
+3. Buat migration untuk products table
+4. Develop Blade components
+5. Implement product catalog
+
+## 🤝 Kontribusi
+
+Project ini baru dimulai! Kontribusi sangat diterima:
+
+1. Fork repository
+2. Buat branch fitur (`git checkout -b feature/nama-fitur`)
+3. Commit changes (`git commit -m 'Tambahkan fitur'`)
+4. Push ke branch (`git push origin feature/nama-fitur`)
+5. Buat Pull Request
+
+## 🐛 Troubleshooting
+
+### Vite Issues
+```bash
+npm run build
+php artisan cache:clear
+```
+
+### Asset Not Loading
+```bash
+php artisan storage:link
+npm install
+npm run dev
+```
+
+## 📞 Kontak
+
+**Developer**: khalilaah15
+**Repository**: https://github.com/khalilaah15/pedasan-kunchung
+
+---
+
+## ⚠️ Important Notes
+
+- **Database**: Belum diintegrasikan
+- **Authentication**: Belum ada
+- **Production Ready**: Tidak, masih development
+- **Testing**: Belum diimplementasi
+
+**🚧 Project dalam tahap awal pengembangan!**
+
+---
+
+**"Level Pedasmu, Kebanggaan Kami!"** 🌶️
+
+© 2025 Pedasan Kunchung. All rights reserved.
