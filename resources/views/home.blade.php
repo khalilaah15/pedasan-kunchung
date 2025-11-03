@@ -1,0 +1,113 @@
+@extends('layouts.app')
+
+@section('title', 'Raih Untung Maksimal dengan Pedasan Kunchung')
+
+@section('content')
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="tag tag-orange">#1 Snack Pedas Terlaris</span>
+                <h1>Raih Untung Maksimal dengan Pedasan Kunchung</h1>
+                <p>Gabung sebagai reseller dan dapatkan akses ke produk snack pedas pilihan, marketing kit lengkap, dan dukungan penuh untuk kesuksesan bisnis Anda.</p>
+                <a href="#" class="btn btn-white">Mulai Sekarang →</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://via.placeholder.com/600x400?text=Snack+Pedas+Makaroni" alt="Pedasan Kunchung Snack">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container" style="text-align: center;">
+            <span class="tag tag-pink">Tentang Kami</span>
+            <h2 class="about-title">Kenapa Pilih Pedasan Kunchung?</h2>
+            <p class="about-text text-center">PedasKing adalah brand snack pedas premium yang telah dipercaya ribuan reseller di seluruh Indonesia. Kami menyediakan produk berkualitas dengan sistem kemitraan yang menguntungkan.</p>
+
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="feature-icon">🛒</div>
+                    <h3 class="feature-title">Produk Berkualitas</h3>
+                    <p class="feature-desc">Snack pedas pilihan dengan bahan berkualitas dan rasa yang konsisten</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Margin Menguntungkan</h3>
+                    <p class="feature-desc">Dapatkan keuntungan maksimal dengan harga reseller special</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3 class="feature-title">Support Penuh</h3>
+                    <p class="feature-desc">Marketing kit lengkap dan dukungan tim untuk kesuksesan bisnis Anda</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container" style="text-align: center;">
+            <span class="tag tag-pink">Katalog Produk</span>
+            <h2 class="products-title">Produk Snack Pedas Pilihan</h2>
+            <p class="products-subtitle text-center">Berbagai varian rasa pedas yang pasti disukai pelanggan Anda</p>
+
+            <div class="product-grid">
+                @for($i = 0; $i < 3; $i++)
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/300x200?text=Makaroni+Pedas" alt="Makaroni Pedas">
+                            @if($i == 2)
+                                <span class="stock-badge">Stok: 94</span>
+                            @endif
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Makaroni Pedas</h3>
+                            <p class="product-desc">Pedas Sekalii seperti terbakar hingga panas</p>
+                            <p class="product-price">Rp 333.333</p>
+                        </div>
+                    </div>
+                @endfor
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container" style="text-align: center;">
+            <span class="tag tag-pink">Testimoni</span>
+            <h2 class="testimonials-title">Apa Kata Reseller Kami</h2>
+            <p class="testimonials-subtitle text-center">Ribuan reseller telah sukses berbisnis bersama Pedasan Kunchung</p>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Snack pedasnya laris banget! Pelanggan selalu repeat order. Untungnya juga lumayan."</p>
+                    <p class="testimonial-author">Ibu Siti</p>
+                    <p class="testimonial-role">Reseller Jakarta</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Marketing kitnya sangat membantu untuk promosi di sosmed. Penjualan meningkat drastis!"</p>
+                    <p class="testimonial-author">Pak Budi</p>
+                    <p class="testimonial-role">Reseller Bandung</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Pelayanan cepat, stok selalu ready. Cocok banget buat yang mau bisnis sampingan."</p>
+                    <p class="testimonial-author">Mbak Rina</p>
+                    <p class="testimonial-role">Reseller Surabaya</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">Siap Memulai Bisnis Pedasan Kunchung?</h2>
+            <p class="cta-text">Daftar sekarang dan dapatkan akses penuh ke katalog produk, sistem pemesanan, dan marketing kit lengkap untuk mendukung bisnis Anda.</p>
+            <a href="#" class="btn btn-white">Daftar Sebagai Reseller →</a>
+        </div>
+    </section>
+@endsection
