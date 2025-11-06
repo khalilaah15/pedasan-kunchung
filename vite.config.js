@@ -6,8 +6,10 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/main.css',
-                'resources/js/main.js',
+                'resources/css/main.css',     // untuk halaman home
+                'resources/css/auth.css',     // untuk halaman auth
+                'resources/js/main.js',       // untuk halaman home
+                'resources/js/auth.js',       // untuk halaman auth
             ],
             refresh: true,
         }),

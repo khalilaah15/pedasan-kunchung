@@ -21,7 +21,9 @@
             <div class="logo">
                 <img src="https://via.placeholder.com/120x40?text=PEDASAN+KUNCHUNG" alt="Pedasan Kunchung Logo">
             </div>
-            <button class="nav-btn">Masuk / Daftar</button>
+            <form>
+                <button class="nav-btn" formaction="/login">Masuk / Daftar</button>
+            </form>
         </div>
     </header>
 
