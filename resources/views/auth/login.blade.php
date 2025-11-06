@@ -24,7 +24,7 @@
 
 <!-- Login Form -->
 <div id="login-form" class="form-section">
-    <form action="/dashboard">
+    <form action="/dashboard-katalog">
         <div class="form-group">
             <label for="email" class="label">Email</label>
             <input type="email" id="email" class="input" placeholder="email@example.com">

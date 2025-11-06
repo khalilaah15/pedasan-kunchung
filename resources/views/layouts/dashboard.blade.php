@@ -28,7 +28,7 @@
                 </svg>
                 Keranjang <span class="badge">1</span>
             </a>
-            <a href="#" class="btn btn-white">
+            <a href="/" class="btn btn-white">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M10 12.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Zm2-2a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4Zm0-3a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4Zm0-3a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4Z"/>
                 </svg>

@@ -10,6 +10,14 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/dashboard', function () {
+Route::get('/dashboard-katalog', function () {
     return view('dashboard.index');
 })->name('dashboard');
+
+Route::get('/dashboard-histori', function () {
+    return view('dashboard.history');
+})->name('dashboard.histori');
+
+Route::get('/dashboard-marketing', function () {
+    return view('dashboard.marketing');
+})->name('dashboard.marketing');
