@@ -15,7 +15,7 @@
     <!-- Header -->
     <header class="header">
         <div class="logo">
-            <img src="https://via.placeholder.com/120x40?text=PEDASAN+KUNCHUNG" alt="Pedasan Kunchung Logo">
+            <img src="{{ asset('images/pedasan-kunchung.png') }}" alt="Pedasan Kunchung Logo" style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">    
         </div>
         <div class="welcome">
             <strong>Admin Dashboard</strong><br>

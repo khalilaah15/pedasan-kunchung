@@ -11,7 +11,7 @@
 </a>
 
 <div class="logo">
-    <img src="https://via.placeholder.com/80x80?text=PEDASAN+KUNCHUNG" alt="Pedasan Kunchung Logo">
+    <img src="{{ asset('images/pedasan-kunchung-login.png') }}" alt="Pedasan Kunchung Logo">
 </div>
 
 <h2 class="title">Pedasan Kunchung</h2>

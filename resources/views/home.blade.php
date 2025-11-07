@@ -5,15 +5,15 @@
 @section('content')
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
+        <div class="hero-container">
             <div class="hero-content">
                 <span class="tag tag-orange">#1 Snack Pedas Terlaris</span>
                 <h1>Raih Untung Maksimal dengan Pedasan Kunchung</h1>
-                <p>Gabung sebagai reseller dan dapatkan akses ke produk snack pedas pilihan, marketing kit lengkap, dan dukungan penuh untuk kesuksesan bisnis Anda.</p>
+                <p>Gabung sebagai reseller dan dapatkan akses ke produk snack pedas pilihan, marketing kit lengkap, dan dukungan penuh.</p>
                 <a href="#" class="btn btn-white">Mulai Sekarang →</a>
             </div>
             <div class="hero-image">
-                <img src="https://via.placeholder.com/600x400?text=Snack+Pedas+Makaroni" alt="Pedasan Kunchung Snack">
+                <img src="{{ asset('images/piring-main.png') }}" alt="Snack Pedas Premium">
             </div>
         </div>
     </section>
@@ -107,7 +107,7 @@
         <div class="container">
             <h2 class="cta-title">Siap Memulai Bisnis Pedasan Kunchung?</h2>
             <p class="cta-text">Daftar sekarang dan dapatkan akses penuh ke katalog produk, sistem pemesanan, dan marketing kit lengkap untuk mendukung bisnis Anda.</p>
-            <a href="#" class="btn btn-white">Daftar Sebagai Reseller →</a>
+            <a href="{{ route('login') }}" class="btn btn-white">Daftar Sebagai Reseller →</a>
         </div>
     </section>
 @endsection

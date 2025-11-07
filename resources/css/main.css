@@ -130,15 +130,15 @@ body {
 }
 
 /* Hero Section */
-.hero {
+/* .hero {
     background-color: #CC0000;
-    padding: 80px 0;
     display: flex;
     align-items: center;
     gap: 40px;
 }
 
 .hero-content {
+    padding: 80px 0;
     flex: 1;
 }
 
@@ -150,7 +150,6 @@ body {
 .hero-image img {
     max-width: 100%;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .hero h1 {
@@ -164,6 +163,96 @@ body {
     color: rgba(255,255,255,0.85);
     margin-bottom: 30px;
     max-width: 500px;
+} */
+
+/* Hero Section */
+.hero {
+    background-color: #CC0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* opsional: full viewport height */
+    padding: 0;
+}
+
+.hero-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 80px 0;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    /* Opsional: sedikit scale-up saat hover */
+    transition: transform 0.4s ease;
+}
+
+.hero-image img:hover {
+    transform: scale(1.02);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.hero p {
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 30px;
+    max-width: 500px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* Responsive: Mobile */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero-content,
+    .hero-image {
+        padding: 40px 0;
+        align-items: center;
+    }
+
+    .hero-image {
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        max-width: 100%;
+    }
 }
 
 /* About Section */
@@ -389,9 +478,9 @@ body {
 }
 
 /* Footer */
+/* Footer Styles */
 .footer {
     background-color: #0D1B2A;
-    padding: 30px 0;
     color: white;
     text-align: center;
 }
@@ -401,19 +490,21 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.footer-logo {
-    flex: 0 0 auto;
+.footer-logo img {
+    height: 30px;
+    display: block;
 }
 
 .footer-text {
-    flex: 1;
     text-align: right;
     font-size: 0.9rem;
     color: #aaa;
+    flex: 1; /* memastikan teks tetap di kanan */
 }
-
 /* Responsive */
 @media (max-width: 768px) {
     .hero {

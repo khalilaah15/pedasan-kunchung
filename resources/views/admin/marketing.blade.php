@@ -2,7 +2,7 @@
 
 @section('title', 'Marketing Kit - Admin Dashboard')
 
-@vite(['resources/css/admin-marketing.css'])
+@vite(['resources/css/admin-marketing.css', 'resources/js/admin-marketing.js'])
 
 @section('content')
 <!-- Tab Navigation -->
@@ -19,7 +19,7 @@
         </svg>
         Transaksi
     </a>
-    <a href="{{ route('admin.marketing') }}" class="tab-btn active">
+    <a href="#" class="tab-btn active">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
             <path d="M10 2a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V2Zm0 12V2h2V12h-2Z"/>
         </svg>
@@ -53,7 +53,6 @@
                 <div class="card-actions">
                     <a href="#" class="btn btn-white">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M13 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h11zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                             <path d="M2.5 4a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1V4zm0 3a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1V7zm0 3a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1v-1z"/>
                         </svg>
                         Edit
@@ -68,5 +67,37 @@
             </div>
         </div>
     @endfor
+</div>
+
+<!-- Modal Tambah Kit -->
+<div class="modal-overlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 class="modal-title">Tambah Marketing Kit</h3>
+            <button class="close-btn">&times;</button>
+        </div>
+
+        <form>
+            <div class="form-group">
+                <label for="judul" class="label">Judul</label>
+                <input type="text" id="judul" class="input" placeholder="Judul marketing kit" value="Judul marketing kit">
+            </div>
+
+            <div class="form-group">
+                <label for="deskripsi" class="label">Deskripsi</label>
+                <textarea id="deskripsi" class="input" rows="3" placeholder="Deskripsi untuk promosi">Deskripsi untuk promosi</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="url_gambar" class="label">URL Gambar</label>
+                <input type="text" id="url_gambar" class="input" placeholder="https://..." value="https://...">
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-red">Simpan</button>
+                <button type="button" class="btn btn-white">Batal</button>
+            </div>
+        </form>
+    </div>
 </div>
 @endsection

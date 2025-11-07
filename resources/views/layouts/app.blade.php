@@ -19,10 +19,10 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="https://via.placeholder.com/120x40?text=PEDASAN+KUNCHUNG" alt="Pedasan Kunchung Logo">
+                <img src="{{ asset('images/pedasan-kunchung.png') }}" alt="Pedasan Kunchung Logo" style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
             </div>
             <form>
-                <button class="nav-btn" formaction="/login">Masuk / Daftar</button>
+                <button class="nav-btn" formaction="{{ route('login') }}">Masuk / Daftar</button>
             </form>
         </div>
     </header>
@@ -36,11 +36,9 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-logo">
-                <img src="https://via.placeholder.com/120x40?text=PEDASAN+KUNCHUNG" alt="Pedasan Kunchung Footer Logo">
+                <img src="{{ asset('images/pedasan-kunchung.png') }}" alt="Pedasan Kunchung" style="height: 40px;">
             </div>
-            <div class="footer-text">
-                Pedasan Kunchung 2025
-            </div>
+            <p class="footer-text">Pedasan Kunchung 2025</p>
         </div>
     </footer>
 </body>
