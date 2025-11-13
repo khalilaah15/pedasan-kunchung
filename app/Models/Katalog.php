@@ -1,5 +1,5 @@
 <?php
-// app/Models/Katalog.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -48,5 +48,14 @@ class Katalog extends Model
     public function scopeCari($query, $nama)
     {
         return $query->where('nama_katalog', 'like', '%' . $nama . '%');
+    }
+
+    public function getGambarUrlAttribute()
+    {
+        if (!$this->file_katalog) {
+            return 'https://via.placeholder.com/300x200?text=No+Image';
+        }
+
+        return asset('storage/' . $this->file_katalog);
     }
 }

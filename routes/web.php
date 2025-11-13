@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 
 //  HOMEPAGE
 Route::get('/', function () {
@@ -27,10 +29,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Admin Routes
     Route::middleware(['admin'])->group(function () {
-        Route::get('/admin-katalog', function () {
-            return view('admin.dashboard');
-        })->name('admin.dashboard');
-
+        Route::get('/admin-katalog', [DashboardController::class, 'index'])->name('admin.dashboard');
+        
         Route::get('/admin-transaksi', function () {
             return view('admin.transaksi');
         })->name('admin.transaksi');
@@ -38,6 +38,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin-marketing', function () {
             return view('admin.marketing');
         })->name('admin.marketing');
+
+        // Katalog Routes
+        Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
     });
 
     // Seller Routes
