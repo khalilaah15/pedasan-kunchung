@@ -41,6 +41,9 @@ Route::middleware(['auth'])->group(function () {
 
         // Katalog Routes
         Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
+        Route::get('/admin/products/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+        Route::put('/admin/products/{id}', [ProductController::class, 'update'])->name('admin.products.update');
+        Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     });
 
     // Seller Routes
