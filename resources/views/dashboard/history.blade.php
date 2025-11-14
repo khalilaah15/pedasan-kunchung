@@ -39,6 +39,7 @@
                 <th>Total</th>
                 <th>Status</th>
                 <th>Catatan</th>
+                <th>Invoice</th>
             </tr>
         </thead>
         <tbody>
@@ -49,6 +50,7 @@
                     <td>Rp 19.000</td>
                     <td><span class="status-badge">Pending</span></td>
                     <td>-</td>
+                    <td><button class="invoice-btn">Download</button></td>
                 </tr>
             @endfor
         </tbody>

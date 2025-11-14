@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('nama_penerima');
             $table->string('alamat_pengiriman');
             $table->string('nomor_telepon');
-            $table->decimal('total_harga', 10, 2);
+            $table->decimal('total_harga', 20, 2);
             $table->enum('status', ['pending', 'paid', 'cancelled'])->default('pending');
             $table->text('catatan')->nullable();
             $table->timestamps();

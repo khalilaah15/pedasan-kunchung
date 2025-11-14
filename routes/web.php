@@ -47,11 +47,20 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['seller'])->group(function () {
         Route::get('/dashboard-katalog', [SellerDashboardController::class, 'index'])->name('dashboard');
 
-        Route::prefix('cart')->group(function () {
-            Route::post('/add', [CartController::class, 'add'])->name('cart.add');
-            Route::get('/', [CartController::class, 'index'])->name('cart.index');
-            Route::delete('/{id}', [CartController::class, 'remove'])->name('cart.remove');
+        Route::prefix('cart')->name('cart.')->group(function () {
+            Route::post('/add', [CartController::class, 'addToCart'])->name('add');
+            Route::get('/', [CartController::class, 'index'])->name('index');
+            Route::delete('/{id}', [CartController::class, 'remove'])->name('remove');
+            Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
+            Route::get('/checkout/success/{id}', [CartController::class, 'success'])->name('success');
         });
+        // Route::get('/transaksi/success', [TransaksiController::class, 'success'])->name('transaksi.success');
+        
+        Route::get('/cart/checkout', function () {
+            $cart = session('cart', []);
+            if (empty($cart)) return redirect()->route('cart.index');
+            return view('dashboard.checkout', compact('cart'));
+        })->name('cart.checkout.form');
 
         Route::get('/dashboard-histori', function () {
             return view('dashboard.history');
