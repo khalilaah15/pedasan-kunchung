@@ -202,6 +202,21 @@ body {
     background-color: #b30000;
 }
 
+.invoice-btn {
+    padding: 6px 12px;
+    background-color: #FF9800;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.invoice-btn:hover {
+    background-color: #ff8f00;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .header {
