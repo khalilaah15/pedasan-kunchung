@@ -53,21 +53,28 @@
             <p class="products-subtitle text-center">Berbagai varian rasa pedas yang pasti disukai pelanggan Anda</p>
 
             <div class="product-grid">
-                @for($i = 0; $i < 3; $i++)
-                    <div class="product-card">
-                        <div class="product-image">
-                            <img src="https://via.placeholder.com/300x200?text=Makaroni+Pedas" alt="Makaroni Pedas">
-                            @if($i == 2)
-                                <span class="stock-badge">Stok: 94</span>
-                            @endif
+                @if($products->isEmpty())
+                    <p style="text-align: center; color: #666; grid-column: 1 / -1;">Belum ada produk tersedia.</p>
+                @else
+                    @foreach($products as $product)
+                        <div class="product-card">
+                            <div class="product-image">
+                                <!-- Tampilkan gambar dari storage -->
+                                <img src="{{ asset('storage/' . $product->file_katalog) }}" 
+                                    alt="{{ $product->nama_katalog }}"
+                                    onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+                                
+                                <!-- Badge stok -->
+                                <span class="stock-badge">Stok: {{ $product->stok_katalog }}</span>
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-title">{{ $product->nama_katalog }}</h3>
+                                <p class="product-desc">{{ Str::limit($product->deskripsi_katalog, 60) }}</p>
+                                <p class="product-price">{{ $product->hargaFormat }}</p>
+                            </div>
                         </div>
-                        <div class="product-info">
-                            <h3 class="product-title">Makaroni Pedas</h3>
-                            <p class="product-desc">Pedas Sekalii seperti terbakar hingga panas</p>
-                            <p class="product-price">Rp 333.333</p>
-                        </div>
-                    </div>
-                @endfor
+                    @endforeach
+                @endif
             </div>
         </div>
     </section>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Dashboard Reseller - Pedasan Kunchung')</title>
 
     {{-- Vite Asset --}}
@@ -28,6 +29,7 @@
                 </svg>
                 Keranjang <span class="badge">1</span>
             </a>
+
             <form method="POST" action="{{ route('logout') }}" id="logout-form">
                 @csrf
                 <button type="submit" class="btn btn-white">
@@ -37,6 +39,7 @@
                     Logout
                 </button>
             </form>
+
         </div>
     </header>
 
