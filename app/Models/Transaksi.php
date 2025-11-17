@@ -11,8 +11,35 @@ class Transaksi extends Model
 
     protected $table = 'transaksi';
     protected $primaryKey = 'id_transaksi';
-    public $incrementing = true;
-    protected $keyType = 'int';
 
-    // ...
+    protected $fillable = [
+        'id_user',
+        'nama_penerima',
+        'alamat_pengiriman',
+        'nomor_telepon',
+        'total_harga',
+        'status',
+        'catatan'
+    ];
+
+    protected $casts = [
+        'total_harga' => 'decimal:2',
+    ];
+
+    // Relasi ke User
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id_user');
+    }
+
+    // Relasi ke DetailTransaksi
+    public function detail()
+    {
+        return $this->hasMany(DetailTransaksi::class, 'id_transaksi', 'id_transaksi');
+    }
+
+    public function getFormattedTotalAttribute()
+    {
+        return 'Rp ' . number_format($this->total_harga, 0, ',', '.');
+    }
 }
