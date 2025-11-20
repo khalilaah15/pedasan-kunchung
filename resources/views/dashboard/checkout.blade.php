@@ -28,7 +28,7 @@
 
             <div class="form-group">
                 <label for="catatan" class="label">Catatan</label>
-                <textarea id="catatan" name="catatan" class="input" rows="2">{{ old('catatan') }}</textarea>
+                <textarea id="catatan" name="catatan" class="input" rows="2" placeholder="Isi ulang catatan akhir">{{ old('catatan') }}</textarea>
             </div>
 
             <button type="submit" class="btn btn-red" style="width: 100%; margin-top: 20px;">Konfirmasi Pesanan</button>

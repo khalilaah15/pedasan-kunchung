@@ -31,29 +31,52 @@
 <div class="history-container">
     <h3 class="history-title">Histori Transaksi</h3>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Tanggal</th>
-                <th>Produk</th>
-                <th>Total</th>
-                <th>Status</th>
-                <th>Catatan</th>
-                <th>Invoice</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for($i = 0; $i < 6; $i++)
+    @if($transactions->isEmpty())
+        <p class="text-center" style="color: #666;">Belum ada transaksi.</p>
+    @else
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>23 Okt 2025</td>
-                    <td>Makaroni Pedas x1</td>
-                    <td>Rp 19.000</td>
-                    <td><span class="status-badge">Pending</span></td>
-                    <td>-</td>
-                    <td><button class="invoice-btn">Download</button></td>
+                    <th>Tanggal</th>
+                    <th>Produk</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Catatan</th>
+                    <th>Invoice</th>
                 </tr>
-            @endfor
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach($transactions as $transaksi)
+                    <tr>
+                        <td>{{ $transaksi->created_at->format('d M Y') }}</td>
+                        <td>
+                            <?php $first = true; ?>
+                            @foreach($transaksi->detail as $detail)
+                                @if(!$first) & @endif
+                                {{ $detail->katalog->nama_katalog }} x{{ $detail->qty }}
+                                <?php $first = false; ?>
+                            @endforeach
+                        </td>
+                        <td>{{ $transaksi->formattedTotal }}</td>
+                        <td>
+                            @if($transaksi->status == 'Pending')
+                                <span class="status-badge status-pending">Pending</span>
+                            @elseif($transaksi->status == 'Processing')
+                                <span class="status-badge status-processing">Processing</span>
+                            @elseif($transaksi->status == 'Completed')
+                                <span class="status-badge status-completed">Completed</span>
+                            @else
+                                <span class="status-badge status-cancelled">Cancelled</span>
+                            @endif
+                        </td>
+                        <td>{{ $transaksi->catatan ?? '-' }}</td>
+                        <td>
+                            <a href="{{ route('invoice.download', $transaksi->id_transaksi) }}" class="invoice-btn">Download</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
 </div>
 @endsection
