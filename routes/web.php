@@ -5,9 +5,12 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\HistoriController as AdminHistoryController;
 use App\Http\Controllers\DashboardController as SellerDashboardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HistoryController as SellerHistoryController;
+use App\Http\Controllers\InvoiceController;
 
 // HOMEPAGE
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -28,9 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin-katalog', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
         
-        Route::get('/admin-transaksi', function () {
-            return view('admin.transaksi');
-        })->name('admin.transaksi');
+        Route::get('/admin-histori', [AdminHistoryController::class, 'index'])->name('admin.histori');
+        Route::post('/admin-histori/{id}/status', [AdminHistoryController::class, 'updateStatus'])->name('admin.histori.update-status');
 
         Route::get('/admin-marketing', function () {
             return view('admin.marketing');
@@ -54,6 +56,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
             Route::get('/checkout/success/{id}', [CartController::class, 'success'])->name('success');
         });
+        Route::get('/cart/checkout/success/{id}', [CartController::class, 'success'])
+                ->name('checkout.success');
         // Route::get('/transaksi/success', [TransaksiController::class, 'success'])->name('transaksi.success');
         
         Route::get('/cart/checkout', function () {
@@ -62,12 +66,11 @@ Route::middleware(['auth'])->group(function () {
             return view('dashboard.checkout', compact('cart'));
         })->name('cart.checkout.form');
 
-        Route::get('/dashboard-histori', function () {
-            return view('dashboard.history');
-        })->name('dashboard.histori');
+        Route::get('/histori', [SellerHistoryController::class, 'index'])->name('dashboard.histori');
 
         Route::get('/dashboard-marketing', function () {
             return view('dashboard.marketing');
         })->name('dashboard.marketing');
     });
+    Route::get('/invoice/{id}', [InvoiceController::class, 'download'])->name('invoice.download');
 });

@@ -122,13 +122,15 @@ body {
     border-radius: 6px;
     font-size: 0.9rem;
     cursor: pointer;
-    background: #f5f5f5;
+    background: #f8f9fa;
     min-width: 100px;
     text-align: center;
 }
 
-.action-dropdown:hover {
-    background: #e0e0e0;
+.action-dropdown:focus {
+    outline: none;
+    border-color: #CC0000;
+    box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.1);
 }
 
 .invoice-btn {
@@ -144,6 +146,146 @@ body {
 
 .invoice-btn:hover {
     background-color: #ff8f00;
+}
+
+
+/* Action Buttons */
+.action-btn-group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: nowrap;
+}
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-pending {
+    color: #FF9800;
+    border-color: #FF9800;
+}
+
+.btn-pending:hover {
+    background: #FFF3E0;
+}
+
+.btn-paid {
+    color: #4caf50;
+    border-color: #4caf50;
+}
+
+.btn-paid:hover {
+    background: #E8F5E9;
+}
+
+.btn-cancel {
+    color: #f44336;
+    border-color: #f44336;
+}
+
+.btn-cancel:hover {
+    background: #FFECEC;
+}
+
+/* Modal Konfirmasi */
+.modal-confirm {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.modal-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-red {
+    background: #CC0000;
+    color: white;
+}
+
+.btn-white {
+    background: white;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+/* Status */
+.status-processing {
+    background-color: #2196F3;
+    color: white;
+}
+
+.status-completed {
+    background-color: #4caf50;
+    color: white;
+}
+
+/* Jika sudah ada status-pending & status-cancelled, biarkan */
+.status-pending {
+    background-color: #FFC107;
+    color: #333;
+}
+
+.status-cancelled {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Feedback sukses/gagal */
+.action-dropdown.success {
+    background-color: #e8f5e9 !important;
+    border-color: #4caf50;
+}
+
+.action-dropdown.error {
+    background-color: #ffebee !important;
+    border-color: #f44336;
 }
 
 /* Responsive */
@@ -194,5 +336,18 @@ body {
         display: inline-block;
         width: 120px;
         margin-right: 10px;
+    }
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .action-btn-group {
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        flex: 1;
+        min-width: 80px;
+        width: auto;
+        font-size: 0.9rem;
     }
 }

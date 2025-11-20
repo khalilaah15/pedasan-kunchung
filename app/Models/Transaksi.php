@@ -24,7 +24,19 @@ class Transaksi extends Model
 
     protected $casts = [
         'total_harga' => 'decimal:2',
+        'status' => 'string',
     ];
+
+    // Accessor untuk status badge (opsional)
+    public function getStatusBadgeAttribute()
+    {
+        return [
+            'Pending' => ['class' => 'status-pending', 'text' => 'Pending'],
+            'Processing' => ['class' => 'status-processing', 'text' => 'Processing'],
+            'Completed' => ['class' => 'status-completed', 'text' => 'Completed'],
+            'Cancelled' => ['class' => 'status-cancelled', 'text' => 'Cancelled']
+        ][$this->status] ?? ['class' => '', 'text' => $this->status];
+    }
 
     // Relasi ke User
     public function user()
@@ -33,13 +45,13 @@ class Transaksi extends Model
     }
 
     // Relasi ke DetailTransaksi
-    public function detail()
-    {
-        return $this->hasMany(DetailTransaksi::class, 'id_transaksi', 'id_transaksi');
-    }
-
     public function getFormattedTotalAttribute()
     {
         return 'Rp ' . number_format($this->total_harga, 0, ',', '.');
+    }
+
+    public function detail()
+    {
+        return $this->hasMany(DetailTransaksi::class, 'id_transaksi', 'id_transaksi');
     }
 }
