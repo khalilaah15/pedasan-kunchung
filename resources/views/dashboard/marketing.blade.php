@@ -34,36 +34,63 @@
         <p class="marketing-subtitle">Download gambar promosi dan copy deskripsi untuk membantu penjualan Anda</p>
     </div>
 
+    <!-- Card Grid -->
     <div class="card-grid">
-        @for($i = 0; $i < 8; $i++)
+        @forelse($kits as $kit)
             <div class="marketing-card">
                 <div class="card-image">
-                    <img src="https://via.placeholder.com/300x200?text=APA+KATA+CUSTOMER%3F" alt="Marketing Kit Image">
+                    <img src="{{ $kit->gambar_url }}" alt="{{ $kit->judul }}">
                 </div>
                 <div class="card-info">
-                    <h3 class="card-title">Apa Kata Pelanggan</h3>
-                    <p class="card-desc">
-                        minchung gapernah bohong soal rasa !! 😍 udah terbukti dari honest reviewnya temen-temen nih 💯, masih ragu buat beli karena takut ga sesuai ekspektasi?...
-                    </p>
+                    <h3 class="card-title">{{ $kit->judul }}</h3>
+                    <p class="card-desc">{{ Str::limit($kit->deskripsi, 100) }}</p>
                     <div class="card-actions">
-                        <a href="#" class="btn btn-white">
+                        <a href="#" class="btn btn-white copy-btn" data-text="{{ $kit->deskripsi }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M2.5 4a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1V4zm0 3a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1V7zm0 3a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1v-1z"/>
+                            </svg>
+                            Copy
+                        </a>
+                        <a href="{{ $kit->gambar_url }}" download class="btn btn-white">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1-.5v2.5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
                                 <path d="M7.646 11.854a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v8.793L5.354 9.146a.5.5 0 1 0-.708.708l2 2z"/>
                             </svg>
                             Download
                         </a>
-                        <a href="#" class="btn btn-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M13 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h11zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                                <path d="M2.5 4a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1V4zm0 3a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1V7zm0 3a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1v-1z"/>
-                            </svg>
-                            Copy
-                        </a>
                     </div>
                 </div>
             </div>
-        @endfor
+        @empty
+            <p class="text-center" style="grid-column: 1 / -1;">Belum ada marketing kit.</p>
+        @endforelse
     </div>
 </div>
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', async function(e) {
+            e.preventDefault();
+            const text = this.getAttribute('data-text');
+            
+            try {
+                await navigator.clipboard.writeText(text);
+                alert('Teks berhasil disalin!');
+            } catch (err) {
+                // Fallback untuk browser lama
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                textarea.style.position = 'fixed';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('Teks berhasil disalin!');
+            }
+        });
+    });
+});
+</script>
+@endpush
 @endsection
