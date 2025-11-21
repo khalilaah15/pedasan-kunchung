@@ -40,33 +40,51 @@
 
 <!-- Card Grid -->
 <div class="card-grid">
-    @for($i = 0; $i < 6; $i++)
+    @forelse($kits as $kit)
         <div class="marketing-card">
             <div class="card-image">
-                <img src="https://via.placeholder.com/300x200?text=APA+KATA+CUSTOMER%3F" alt="Marketing Kit Image">
+                <img src="{{ $kit->gambar_url }}" alt="{{ $kit->judul }}">
             </div>
             <div class="card-info">
-                <h3 class="card-title">Apa Kata Pelanggan</h3>
-                <p class="card-desc">
-                    minchung gapernah bohong soal rasa !! 😍 udah terbukti dari honest reviewnya temen-temen nih 💯, masih ragu buat beli karena takut ga sesuai ekspektasi?...
-                </p>
+                <h3 class="card-title">{{ $kit->judul }}</h3>
+                <p class="card-desc">{{ Str::limit($kit->deskripsi, 100) }}</p>
                 <div class="card-actions">
-                    <a href="#" class="btn btn-white">
+                    <a href="#" class="btn btn-white copy-btn" data-text="{{ $kit->deskripsi }}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M2.5 4a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1V4zm0 3a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1V7zm0 3a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1v-1z"/>
                         </svg>
-                        Edit
+                        Copy
                     </a>
-                    <a href="#" class="btn btn-white">
+                    <a href="{{ $kit->gambar_url }}" download class="btn btn-white">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M10 2a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V2Zm0 12V2h2V12h-2Z"/>
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1-.5v2.5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v8.793L5.354 9.146a.5.5 0 1 0-.708.708l2 2z"/>
                         </svg>
-                        Hapus
+                        Download
                     </a>
                 </div>
             </div>
+            <div class="card-actions">
+                <button class="btn btn-white edit-btn" data-id="{{ $kit->id_marketing_kit }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11.49 2.323c.438-.504 1.105-.504 1.543 0 .438.504.438 1.265 0 1.769l-4.5 4.5a1.11 1.11 0 0 1-.665.336 1.11 1.11 0 0 1-.665-.336l-4.5-4.5a1.11 1.11 0 0 1 0-1.769c.438-.504 1.105-.504 1.543 0l4.5 4.5a1.11 1.11 0 0 1 .665.336 1.11 1.11 0 0 1 .665-.336l4.5-4.5Z"/>
+                    </svg>
+                    Edit
+                </button>
+                <form action="{{ route('admin.marketing.destroy', $kit->id_marketing_kit) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-white delete-btn" onclick="return confirm('Yakin hapus?')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
         </div>
-    @endfor
+    @empty
+        <p class="text-center" style="grid-column: 1 / -1;">Belum ada marketing kit.</p>
+    @endforelse
 </div>
 
 <!-- Modal Tambah Kit -->

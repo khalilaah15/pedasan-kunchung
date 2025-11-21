@@ -6,10 +6,12 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\HistoriController as AdminHistoryController;
+use App\Http\Controllers\Admin\MarketingKitController as AdminMarketingKitController;
 use App\Http\Controllers\DashboardController as SellerDashboardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HistoryController as SellerHistoryController;
+use App\Http\Controllers\MarketingKitController as SellerMarketingKitController;
 use App\Http\Controllers\InvoiceController;
 
 // HOMEPAGE
@@ -34,9 +36,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin-histori', [AdminHistoryController::class, 'index'])->name('admin.histori');
         Route::post('/admin-histori/{id}/status', [AdminHistoryController::class, 'updateStatus'])->name('admin.histori.update-status');
 
-        Route::get('/admin-marketing', function () {
-            return view('admin.marketing');
-        })->name('admin.marketing');
+        // Marketing Kit Admin
+        Route::get('/admin-marketing', [AdminMarketingKitController::class, 'index'])->name('admin.marketing');
+        Route::post('/admin/marketing', [AdminMarketingKitController::class, 'store'])->name('admin.marketing.store');
+        Route::get('/admin/marketing/{id}/edit', [AdminMarketingKitController::class, 'edit'])->name('admin.marketing.edit');
+        Route::put('/admin/marketing/{id}', [AdminMarketingKitController::class, 'update'])->name('admin.marketing.update');
+        Route::delete('/admin/marketing/{id}', [AdminMarketingKitController::class, 'destroy'])->name('admin.marketing.destroy');
 
         // Katalog CRUD
         Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
@@ -68,9 +73,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/histori', [SellerHistoryController::class, 'index'])->name('dashboard.histori');
 
-        Route::get('/dashboard-marketing', function () {
-            return view('dashboard.marketing');
-        })->name('dashboard.marketing');
+        // Marketing Kit Seller
+        Route::get('/dashboard-marketing', [SellerMarketingKitController::class, 'index'])->name('dashboard.marketing');
+        Route::post('/marketing/copy', [SellerMarketingKitController::class, 'copyText'])->name('marketing.copy');
     });
     Route::get('/invoice/{id}', [InvoiceController::class, 'download'])->name('invoice.download');
 });
