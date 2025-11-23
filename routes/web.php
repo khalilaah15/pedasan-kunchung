@@ -75,7 +75,6 @@ Route::middleware(['auth'])->group(function () {
 
         // Marketing Kit Seller
         Route::get('/dashboard-marketing', [SellerMarketingKitController::class, 'index'])->name('dashboard.marketing');
-        Route::post('/marketing/copy', [SellerMarketingKitController::class, 'copyText'])->name('marketing.copy');
     });
     Route::get('/invoice/{id}', [InvoiceController::class, 'download'])->name('invoice.download');
 });

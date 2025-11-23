@@ -1,39 +1,82 @@
 // resources/js/admin-marketing.js
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('Halaman Admin Marketing Kit siap!');
 
+    // Modal Elements
     const openModalBtn = document.querySelector('.add-kit-btn');
     const modalOverlay = document.querySelector('.modal-overlay');
     const closeModalBtn = document.querySelector('.close-btn');
     const cancelButton = document.querySelector('.btn-white');
-    const saveButton = document.querySelector('.btn-red');
+    const form = document.getElementById('addMarketingForm'); 
 
     // Buka modal
-    openModalBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        modalOverlay.classList.add('active');
-    });
+    if (openModalBtn) {
+        openModalBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            modalOverlay.classList.add('active');
+        });
+    }
 
-    // Tutup modal via X
-    closeModalBtn.addEventListener('click', function() {
+    // Tutup modal
+    function closeModal() {
         modalOverlay.classList.remove('active');
-    });
+    }
 
-    // Tutup modal via Batal
-    cancelButton.addEventListener('click', function() {
-        modalOverlay.classList.remove('active');
-    });
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+    }
 
-    // Tutup modal via klik luar
-    modalOverlay.addEventListener('click', function(e) {
-        if (e.target === modalOverlay) {
-            modalOverlay.classList.remove('active');
-        }
-    });
+    if (cancelButton) {
+        cancelButton.addEventListener('click', closeModal);
+    }
 
-    // Prevent close on click inside modal
-    document.querySelector('.modal').addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
+    if (modalOverlay) {
+        modalOverlay.addEventListener('click', function (e) {
+            if (e.target === modalOverlay) closeModal();
+        });
+    }
+
+    const modalContent = document.querySelector('.modal');
+    if (modalContent) {
+        modalContent.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+    }
+
+    // Submit form via AJAX — Hanya jika form ada
+    if (form) {
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch('/admin/marketing', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    },
+                    body: formData
+                });
+
+                // Cek jika response OK
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json(); 
+
+                if (result.success) {
+                    alert(result.message);
+                    location.reload();
+                } else {
+                    alert('Gagal: ' + (result.message || 'Coba lagi.'));
+                }
+            } catch (err) {
+                console.error('Fetch error:', err);
+                alert('Koneksi gagal. Periksa konsol untuk detail.');
+            }
+        });
+    }
 });

@@ -28,9 +28,9 @@ class MarketingKit extends Model
         }
 
         // Jika sudah URL penuh (http/https), kembalikan langsung
-        if (filter_var($this->file_gambar, FILTER_VALIDATE_URL)) {
-            return $this->file_gambar;
-        }
+        // if (filter_var($this->file_gambar, FILTER_VALIDATE_URL)) {
+        //     return $this->file_gambar;
+        // }
 
         // Jika lokal, gabungkan dengan asset()
         return asset('storage/' . $this->file_gambar);

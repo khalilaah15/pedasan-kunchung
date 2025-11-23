@@ -25,6 +25,12 @@
         </svg>
         Marketing Kit
     </a>
+    <a href="#" class="tab-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M10 2a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V2Zm0 12V2h2V12h-2Z"/>
+        </svg>
+        Testimoni
+    </a>
 </div>
 
 <!-- Page Title -->
@@ -95,20 +101,25 @@
             <button class="close-btn">&times;</button>
         </div>
 
-        <form>
+        <form action="{{ route('admin.marketing.store') }}" 
+            method="POST" 
+            enctype="multipart/form-data"   
+            id="addMarketingForm">
+            @csrf
             <div class="form-group">
                 <label for="judul" class="label">Judul</label>
-                <input type="text" id="judul" class="input" placeholder="Judul marketing kit" value="Judul marketing kit">
+                <input type="text" id="judul" class="input" placeholder="Judul marketing kit" value="">
             </div>
 
             <div class="form-group">
                 <label for="deskripsi" class="label">Deskripsi</label>
-                <textarea id="deskripsi" class="input" rows="3" placeholder="Deskripsi untuk promosi">Deskripsi untuk promosi</textarea>
+                <textarea id="deskripsi" class="input" rows="3" placeholder="Deskripsi untuk promosi"></textarea>
             </div>
 
             <div class="form-group">
-                <label for="url_gambar" class="label">URL Gambar</label>
-                <input type="text" id="url_gambar" class="input" placeholder="https://..." value="https://...">
+                <label for="file_gambar" class="label">Upload Gambar</label>
+                <input type="file" id="file_gambar" name="file_gambar" class="input" accept="image/*" required>
+                <small style="color: #666;">Maksimal 2MB, format: JPG, PNG, GIF, SVG</small>
             </div>
 
             <div class="modal-footer">
