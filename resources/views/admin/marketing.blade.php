@@ -19,13 +19,13 @@
         </svg>
         History
     </a>
-    <a href="#" class="tab-btn active">
+    <a href="{{ route('admin.marketing') }}" class="tab-btn active">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
             <path d="M10 2a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V2Zm0 12V2h2V12h-2Z"/>
         </svg>
         Marketing Kit
     </a>
-    <a href="#" class="tab-btn">
+    <a href="{{ route('admin.testimoni.index') }}" class="tab-btn">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
             <path d="M10 2a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V2Zm0 12V2h2V12h-2Z"/>
         </svg>
@@ -54,26 +54,12 @@
             <div class="card-info">
                 <h3 class="card-title">{{ $kit->judul }}</h3>
                 <p class="card-desc">{{ Str::limit($kit->deskripsi, 100) }}</p>
-                <div class="card-actions">
-                    <a href="#" class="btn btn-white copy-btn" data-text="{{ $kit->deskripsi }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M2.5 4a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1V4zm0 3a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1V7zm0 3a1 1 0 0 1 1-1H5a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3.5a1 1 0 0 1-1-1v-1z"/>
-                        </svg>
-                        Copy
-                    </a>
-                    <a href="{{ $kit->gambar_url }}" download class="btn btn-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1-.5v2.5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v8.793L5.354 9.146a.5.5 0 1 0-.708.708l2 2z"/>
-                        </svg>
-                        Download
-                    </a>
-                </div>
             </div>
             <div class="card-actions">
-                <button class="btn btn-white edit-btn" data-id="{{ $kit->id_marketing_kit }}">
+                <button class="btn btn-white edit-btn" data-id="{{ $kit->id_marketing_kit }}" data-bs-toggle="modal" data-bs-target="#editMarketingKitModal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M11.49 2.323c.438-.504 1.105-.504 1.543 0 .438.504.438 1.265 0 1.769l-4.5 4.5a1.11 1.11 0 0 1-.665.336 1.11 1.11 0 0 1-.665-.336l-4.5-4.5a1.11 1.11 0 0 1 0-1.769c.438-.504 1.105-.504 1.543 0l4.5 4.5a1.11 1.11 0 0 1 .665.336 1.11 1.11 0 0 1 .665-.336l4.5-4.5Z"/>
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.94l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                     </svg>
                     Edit
                 </button>
@@ -101,19 +87,30 @@
             <button class="close-btn">&times;</button>
         </div>
 
+        @if ($errors->any())
+            <div style="background: #f44336; color: white; padding: 12px; border-radius: 6px; margin-bottom: 15px;">
+                <strong>Oops! Ada yang salah:</strong>
+                <ul style="margin: 8px 0 0 20px;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('admin.marketing.store') }}" 
-            method="POST" 
-            enctype="multipart/form-data"   
-            id="addMarketingForm">
+              method="POST" 
+              enctype="multipart/form-data">
             @csrf
+
             <div class="form-group">
                 <label for="judul" class="label">Judul</label>
-                <input type="text" id="judul" class="input" placeholder="Judul marketing kit" value="">
+                <input type="text" id="judul" name="judul" class="input" value="{{ old('judul') }}" required>
             </div>
 
             <div class="form-group">
                 <label for="deskripsi" class="label">Deskripsi</label>
-                <textarea id="deskripsi" class="input" rows="3" placeholder="Deskripsi untuk promosi"></textarea>
+                <textarea id="deskripsi" name="deskripsi" class="input" rows="3">{{ old('deskripsi') }}</textarea>
             </div>
 
             <div class="form-group">
@@ -124,7 +121,53 @@
 
             <div class="modal-footer">
                 <button type="submit" class="btn btn-red">Simpan</button>
-                <button type="button" class="btn btn-white">Batal</button>
+                <button type="button" class="btn btn-white close-modal">Batal</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Edit Marketing Kit -->
+<div class="modal-overlay-edit">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 class="modal-title">Edit Marketing Kit</h3>
+            <button class="close-btn-edit">&times;</button>
+        </div>
+
+        <form action="" method="POST" id="editMarketingKitForm" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            <input type="hidden" id="edit_id" name="id">
+
+            <div class="form-group">
+                <label for="edit_judul" class="label">Judul Marketing Kit</label>
+                <input type="text" id="edit_judul" name="judul" class="input" required>
+            </div>
+
+            <div class="form-group">
+                <label for="edit_deskripsi" class="label">Deskripsi</label>
+                <textarea id="edit_deskripsi" name="deskripsi" class="input" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="edit_file_gambar" class="label">Ganti File Gambar (opsional)</label>
+                <input type="file" id="edit_file_gambar" name="file_gambar" class="input" accept="image/*">
+                <small style="color: #666;">Biarkan kosong jika tidak ingin ganti gambar</small>
+            </div>
+
+            <div class="form-group">
+                <label class="label">Gambar Saat Ini</label>
+                <div id="currentImageInfo" class="current-file-info">
+                    <img id="currentImagePreview" src="" alt="Preview" style="max-width: 200px; max-height: 150px; display: none; margin-bottom: 8px;">
+                    <span id="currentImageName" style="color: #666;">-</span>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-red">Simpan Perubahan</button>
+                <button type="button" class="btn btn-white btn-batal-edit">Batal</button>
             </div>
         </form>
     </div>
