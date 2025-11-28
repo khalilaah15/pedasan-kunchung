@@ -87,24 +87,87 @@
             <p class="testimonials-subtitle text-center">Ribuan reseller telah sukses berbisnis bersama Pedasan Kunchung</p>
 
             <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"Snack pedasnya laris banget! Pelanggan selalu repeat order. Untungnya juga lumayan."</p>
-                    <p class="testimonial-author">Ibu Siti</p>
-                    <p class="testimonial-role">Reseller Jakarta</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"Marketing kitnya sangat membantu untuk promosi di sosmed. Penjualan meningkat drastis!"</p>
-                    <p class="testimonial-author">Pak Budi</p>
-                    <p class="testimonial-role">Reseller Bandung</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">"Pelayanan cepat, stok selalu ready. Cocok banget buat yang mau bisnis sampingan."</p>
-                    <p class="testimonial-author">Mbak Rina</p>
-                    <p class="testimonial-role">Reseller Surabaya</p>
-                </div>
+                @php
+                    // Ambil 3 testimoni yang sudah disetujui dari database
+                    use App\Models\Testimoni;
+                    $testimonials = Testimoni::with('user')
+                        ->where('disetujui', true)
+                        ->orderBy('created_at', 'desc')
+                        ->limit(3)
+                        ->get();
+                @endphp
+
+                @foreach($testimonials as $testimonial)
+                    <div class="testimonial-card">
+                        <!-- Rating Stars -->
+                        <div class="stars">
+                            @for($i = 1; $i <= 5; $i++)
+                                <span style="color: {{ $i <= $testimonial->rating ? '#fbbf24' : '#d1d5db' }}; font-size: 18px;">
+                                    ★
+                                </span>
+                            @endfor
+                        </div>
+                        
+                        <p class="testimonial-text">"{{ $testimonial->pesan }}"</p>
+                        <p class="testimonial-author">{{ $testimonial->user->nama ?? 'Reseller' }}</p>
+                        <p class="testimonial-role">
+                            @if($testimonial->user && !empty($testimonial->user->nama_toko))
+                                {{ $testimonial->user->nama_toko }}
+                            @else
+                                Reseller Setia
+                            @endif
+                        </p>
+                    </div>
+                @endforeach
+
+                <!-- Jika testimoni dari database kurang dari 3, tampilkan dummy -->
+                @if($testimonials->count() < 3)
+                    @php
+                        $dummyCount = 3 - $testimonials->count();
+                        $dummyTestimonials = [
+                            [
+                                'rating' => 5,
+                                'pesan' => 'Snack pedasnya laris banget! Pelanggan selalu repeat order. Untungnya juga lumayan.',
+                                'author' => 'Ibu Siti',
+                                'role' => 'Reseller Jakarta'
+                            ],
+                            [
+                                'rating' => 5, 
+                                'pesan' => 'Marketing kitnya sangat membantu untuk promosi di sosmed. Penjualan meningkat drastis!',
+                                'author' => 'Pak Budi',
+                                'role' => 'Reseller Bandung'
+                            ],
+                            [
+                                'rating' => 5,
+                                'pesan' => 'Pelayanan cepat, stok selalu ready. Cocok banget buat yang mau bisnis sampingan.',
+                                'author' => 'Mbak Rina', 
+                                'role' => 'Reseller Surabaya'
+                            ]
+                        ];
+                    @endphp
+
+                    @for($i = 0; $i < $dummyCount; $i++)
+                        <div class="testimonial-card">
+                            <div class="stars">
+                                @for($j = 1; $j <= 5; $j++)
+                                    <span style="color: {{ $j <= $dummyTestimonials[$i]['rating'] ? '#fbbf24' : '#d1d5db' }}; font-size: 18px;">
+                                        ★
+                                    </span>
+                                @endfor
+                            </div>
+                            <p class="testimonial-text">"{{ $dummyTestimonials[$i]['pesan'] }}"</p>
+                            <p class="testimonial-author">{{ $dummyTestimonials[$i]['author'] }}</p>
+                            <p class="testimonial-role">{{ $dummyTestimonials[$i]['role'] }}</p>
+                        </div>
+                    @endfor
+                @endif
+            </div>
+
+            <!-- Tombol untuk melihat lebih banyak testimoni -->
+            <div style="margin-top: 2rem;">
+                <a href="{{ route('testimoni.saya') }}" class="btn btn-outline">
+                    Lihat Semua Testimoni
+                </a>
             </div>
         </div>
     </section>
