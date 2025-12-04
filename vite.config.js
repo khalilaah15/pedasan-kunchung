@@ -14,7 +14,6 @@ export default defineConfig({
                 'resources/css/admin.css',
                 'resources/css/admin-histori.css',
                 'resources/css/admin-marketing.css',
-                'resources/css/app.css',
                 'resources/css/testimoni.css',
                 'resources/js/main.js',
                 'resources/js/auth.js',
