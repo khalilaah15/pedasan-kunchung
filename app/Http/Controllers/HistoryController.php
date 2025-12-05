@@ -14,7 +14,7 @@ class HistoryController extends Controller
         $transactions = Transaksi::with('detail.katalog')
             ->where('id_user', Auth::id())
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10);
 
         return view('dashboard.history', compact('transactions'));
     }

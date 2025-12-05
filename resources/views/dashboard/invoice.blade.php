@@ -135,6 +135,13 @@
                 @if($transaksi->catatan)
                     <p>Catatan: {{ $transaksi->catatan }}</p>
                 @endif
+                @if($transaksi->bukti_pembayaran)
+                    <p>Bukti Pembayaran: <br>
+                        <a href="{{ asset($transaksi->bukti_pembayaran) }}" target="_blank">
+                            <img src="{{ asset($transaksi->bukti_pembayaran) }}" alt="Bukti Pembayaran" style="max-width: 100px; margin-top: 5px;">
+                        </a>
+                    </p>
+                @endif
             </div>
         </div>
 

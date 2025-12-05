@@ -28,7 +28,6 @@ class CartController extends Controller
         $request->validate([
             'id_katalog' => 'required|integer',
             'qty' => 'required|integer|min:1',
-            'catatan' => 'nullable|string',
         ]);
 
         $product = Katalog::findOrFail($request->id_katalog);
@@ -43,7 +42,6 @@ class CartController extends Controller
                 'nama_katalog' => $product->nama_katalog,
                 'harga_katalog' => $product->harga_katalog,
                 'qty' => $request->qty,
-                'catatan' => $request->catatan ?? '',
                 'gambar' => $product->file_katalog,
             ];
         }
@@ -78,12 +76,22 @@ class CartController extends Controller
             'alamat_pengiriman' => 'required|string',
             'nomor_telepon' => 'required|string',
             'catatan' => 'nullable|string',
+            'bukti_pembayaran' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $cart = Session::get('cart', []);
 
         if (empty($cart)) {
             return redirect()->back()->with('error', 'Keranjang Anda kosong.');
+        }
+
+        // Handle file upload
+        $filePath = null;
+        if ($request->hasFile('bukti_pembayaran')) {
+            $file = $request->file('bukti_pembayaran');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('bukti_pembayaran'), $filename);
+            $filePath = 'bukti_pembayaran/' . $filename;
         }
 
         // Hitung total
@@ -97,6 +105,7 @@ class CartController extends Controller
         $transaksi->nomor_telepon = $request->nomor_telepon;
         $transaksi->total_harga = $totalHarga;
         $transaksi->catatan = $request->catatan;
+        $transaksi->bukti_pembayaran = $filePath;
         $transaksi->save();
 
         // Simpan detail transaksi

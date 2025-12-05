@@ -101,11 +101,6 @@ use Illuminate\Support\Str;
                 <input type="number" id="modal_qty" name="qty" class="input" value="" min="0" required placeholder="Masukkan jumlah">
             </div>
 
-            <div class="form-group">
-                <label for="modal_catatan" class="label">Catatan</label>
-                <textarea id="modal_catatan" name="catatan" class="input" rows="2" placeholder="Contoh: Sambal ekstra pedas"></textarea>
-            </div>
-
             <div class="modal-footer">
                 <button type="submit" class="btn btn-red">Tambah ke Keranjang</button>
                 <button type="button" class="btn btn-white btn-cancel-cart">Batal</button>

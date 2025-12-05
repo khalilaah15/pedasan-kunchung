@@ -47,7 +47,7 @@
                     <th>Produk</th>
                     <th>Total</th>
                     <th>Status</th>
-                    <th>Catatan</th>
+                    <th>Bukti Bayar</th>
                     <th>Invoice</th>
                 </tr>
             </thead>
@@ -77,7 +77,13 @@
                                 <span class="status-badge status-unknown">{{ $transaksi->status }}</span>
                             @endif
                         </td>
-                        <td>{{ $transaksi->catatan ?? '-' }}</td>
+                        <td>
+                            @if($transaksi->bukti_pembayaran)
+                                <a href="{{ asset($transaksi->bukti_pembayaran) }}" target="_blank" class="invoice-btn">Lihat</a>
+                            @else
+                                -
+                            @endif
+                        </td>
                         <td>
                             <a href="{{ route('invoice.download', $transaksi->id_transaksi) }}" class="invoice-btn">Download</a>
                         </td>
@@ -85,6 +91,10 @@
                 @endforeach
             </tbody>
         </table>
+
+        <div class="pagination-links">
+            {{ $transactions->links() }}
+        </div>
     @endif
 </div>
 @endsection

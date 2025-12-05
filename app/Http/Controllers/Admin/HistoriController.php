@@ -12,7 +12,7 @@ class HistoriController extends \App\Http\Controllers\Controller
     {
         $histori = Transaksi::with(['user', 'detail.katalog'])
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10);
 
         return view('admin.histori', compact('histori'));
     }
