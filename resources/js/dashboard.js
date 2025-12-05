@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('modal_product_name').value = productName;
             document.getElementById('modal_product_price').value = 'Rp ' + parseFloat(productPrice).toLocaleString('id-ID');
             document.getElementById('modal_qty').value = 0;
-            document.getElementById('modal_catatan').value = '';
             
             document.querySelector('.modal-overlay-cart').classList.add('active');
         });
@@ -80,8 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 body: JSON.stringify({
                     id_katalog: document.getElementById('modal_product_id').value,
-                    qty: document.getElementById('modal_qty').value,
-                    catatan: document.getElementById('modal_catatan').value
+                    qty: document.getElementById('modal_qty').value
                 })
             });
             

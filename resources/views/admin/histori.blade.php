@@ -48,6 +48,7 @@
                     <th>Produk</th>
                     <th>Total</th>
                     <th>Status</th>
+                    <th>Bukti Pembayaran</th>
                     <th>Aksi</th>
                     <th>Invoice</th>
                 </tr>
@@ -81,6 +82,13 @@
                             <span class="status-badge {{ $badge['class'] }}">{{ $badge['text'] }}</span>
                         </td>
                         <td>
+                            @if($item->bukti_pembayaran)
+                                <a href="{{ asset($item->bukti_pembayaran) }}" target="_blank" class="invoice-btn">Lihat</a>
+                            @else
+                                -
+                            @endif
+                        </td>
+                        <td>
                             <select class="action-dropdown" 
                                     data-id="{{ $item->id_transaksi }}"
                                     onchange="updateStatus(this)">
@@ -99,6 +107,10 @@
                 @endforeach
             </tbody>
         </table>
+
+        <div class="pagination-links">
+            {{ $histori->links() }}
+        </div>
     @endif
 </div>
 

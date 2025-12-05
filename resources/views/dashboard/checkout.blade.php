@@ -9,7 +9,7 @@
 
     <!-- Form Pengiriman -->
     <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-        <form action="{{ route('cart.checkout') }}" method="POST">
+        <form action="{{ route('cart.checkout') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="nama_penerima" class="label">Nama Penerima</label>
@@ -29,6 +29,11 @@
             <div class="form-group">
                 <label for="catatan" class="label">Catatan</label>
                 <textarea id="catatan" name="catatan" class="input" rows="2" placeholder="Isi ulang catatan akhir">{{ old('catatan') }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="bukti_pembayaran" class="label">Bukti Pembayaran</label>
+                <input type="file" id="bukti_pembayaran" name="bukti_pembayaran" class="input" required>
             </div>
 
             <button type="submit" class="btn btn-red" style="width: 100%; margin-top: 20px;">Konfirmasi Pesanan</button>
