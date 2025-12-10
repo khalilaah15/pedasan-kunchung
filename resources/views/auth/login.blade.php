@@ -71,13 +71,6 @@
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
         </div>
-        <!-- <div class="form-group">
-            <label for="reg-nama_toko" class="label">Nama Toko</label>
-            <input type="text" id="reg-nama_toko" name="nama_toko" class="input" value="{{ old('nama_toko') }}" placeholder="Nama toko" required>
-            @error('nama_toko')
-                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-            @enderror
-        </div> -->
         <div class="form-group">
             <label for="reg-email" class="label">Email</label>
             <input type="email" id="reg-email" name="email" class="input" value="{{ old('email') }}" placeholder="email@example.com" required>
