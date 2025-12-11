@@ -16,7 +16,7 @@ class User extends Authenticatable
     protected $keyType = 'int';
     
     protected $fillable = [
-        'nama', 'nama_toko', 'email', 'password', 'role'
+        'nama', 'nama_toko', 'email', 'password', 'role', 'status'
     ];
 
     protected $hidden = [
@@ -37,5 +37,13 @@ class User extends Authenticatable
     public function isSeller()
     {
         return $this->role === 'seller';
+    }
+
+    // Accessor untuk badge status
+    public function getStatusBadgeAttribute()
+    {
+        return $this->status === 'active' 
+            ? '<span class="badge bg-success">Active</span>' 
+            : '<span class="badge bg-danger">Inactive</span>';
     }
 }

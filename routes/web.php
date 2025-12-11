@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\HistoriController as AdminHistoryController;
 use App\Http\Controllers\Admin\MarketingKitController as AdminMarketingKitController;
 use App\Http\Controllers\Admin\TestimoniController as AdminTestimoniController;
+use App\Http\Controllers\Admin\ResellerController;
+use App\Http\Controllers\Admin\PenjualanController;
 
 // HOMEPAGE
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -58,6 +60,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/testimoni/{id}/approve', [AdminTestimoniController::class, 'approve'])->name('admin.testimoni.approve');
         Route::post('/testimoni/{id}/reject', [AdminTestimoniController::class, 'reject'])->name('admin.testimoni.reject');
         Route::delete('/testimoni/{id}/delete', [AdminTestimoniController::class, 'destroy'])->name('admin.testimoni.delete');
+        
+        // Status Seller
+        Route::get('/admin/reseller', [ResellerController::class, 'index'])->name('admin.reseller');
+        Route::post('/admin/reseller/{id}/status', [ResellerController::class, 'updateStatus'])->name('admin.reseller.status');
+        Route::post('/admin/reseller/{id}/role', [ResellerController::class, 'updateRole'])->name('admin.reseller.role');
+
+        // Penjualan
+        Route::get('/admin/penjualan', [PenjualanController::class, 'index'])->name('admin.penjualan');
+        Route::get('/admin/penjualan/chart', [PenjualanController::class, 'chartData'])->name('admin.penjualan.chart');
     });
 
     // Seller Routes
